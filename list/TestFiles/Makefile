@@ -16,7 +16,7 @@ SRCS = list.c  main.c
 OBJS = $(SRCS:.c=.o)
 
 # 소스및 오브젝트 파일 (테스트 전용 파일과 구현한 자료구조 파일을 추가해주세요)
-TSRCS =   Tester.c TestList.c list.c # ex) TestList, list.c
+TSRCS =   Tester.c TestList.c ../list.c # ex) TestList, list.c
 TOBJS = $(TSRCS:.c=.o)
 
 # 인자없이 넘겼을때 기본 명령어
@@ -29,7 +29,6 @@ all : $(TARGET) $(TEST)
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 	cl $(MSVC_CFLAGS) /Fe:$(TARGET) $(OBJS)
 	$(TARGET)
 

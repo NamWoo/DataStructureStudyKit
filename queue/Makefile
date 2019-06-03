@@ -23,8 +23,7 @@ TOBJS = $(TSRCS:.c=.o)
 all : $(TARGET) $(TEST)
 
 # 오브젝트 파일(.o 확장자 붙은 파일) 을 make 하면 해당 파일의 .c 를 의존성파일로 넣는다 $@ $< 는  내부 메크로 로써 
-# $@ <- 현재의 목표 파일(Target)
-# $< <- 현재의 목표 파일(Target)보다 더 최근에 갱신된 파일 이름
+# $@ 는 
 %.o:%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
@@ -41,3 +40,4 @@ $(TEST) :$(TOBJS)
 
 clean :
 	rm *.o *.exe *.obj
+	rm ./leak_detector/*.o

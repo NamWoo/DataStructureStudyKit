@@ -21,6 +21,6 @@ struct Tester
     int TestResults[TOTAL_TEST_COUNTS];
     int CurrentScore;
     int argcList[TOTAL_TESTS];
-}test;
+}tester;
 
 

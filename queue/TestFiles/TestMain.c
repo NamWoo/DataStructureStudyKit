@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "list.h"
 #include "TEST_MACRO.h"
-#include "test.h"
+#include "Tester.h"
 #include <crtdbg.h>
 
 #include <malloc.h>
