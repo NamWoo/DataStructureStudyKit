@@ -18,19 +18,26 @@ private:
 
 public:
     Tester() = default;
-    Tester(T funcToRegister, int testCases);
-    ~Tester() = default;
+    Tester(T funcToRegister, int testCases,const char* description);
+    ~Tester();
     void TestRegisteredFunc(int evaluateValue,Args... args);
 
     static void TestFunc(T funcToRegister,int evaluateValue, Args... args);
 };
 
 template <typename T, typename... Args>
-Tester<T, Args...>::Tester(T funcToRegister, int testCases)
+Tester<T, Args...>::Tester(T funcToRegister, int testCases , const char* description)
     : mCurrentTest((T)funcToRegister)
     , mNumberOfTestCases(testCases)
     , mCurrentScore(0)
 {
+    printf("====Test : %s  START====\n",description);
+}
+
+template <typename T, typename... Args>
+Tester<T,Args...>::~Tester()
+{
+    printf("====Test Over====\n");
 }
 
 template <typename T, typename... Args>
