@@ -1,0 +1,2 @@
+﻿TestInitialization.obj : error LNK2019: "int __cdecl InitList(struct list *)" (?InitList@@YAHPAUlist@@@Z) 외부 기호(참조 위치: "void __cdecl TestInitialization(void)" (?TestInitialization@@YAXXZ) 함수)에서 확인하지 못했습니다.
+C:\Users\bkh75\Desktop\datastructurestudykit\Windows\DataStructure\Debug\list.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
