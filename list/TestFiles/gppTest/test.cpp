@@ -6,15 +6,21 @@ int myStrlen(const char* str,int num)
     int cnt=0;
     while (*p++)
     {
-        std::cout<<cnt++;
+        cnt++;
     }
-    std::cout<<std::endl;
-    return 0;
+    
+    return cnt+num;
 }
 
 
 int main()
 {
-    Tester<VaFunc_t,const char*, int>::TestFunc((VaFunc_t)myStrlen,"asdf",30);
+    Tester<VaFunc_t,const char*, int> tester((VaFunc_t)myStrlen,5);
+    tester.TestRegisteredFunc(5,"asdf",1);
+    tester.TestRegisteredFunc(7,"asdf",0);
+    tester.TestRegisteredFunc(6,"asdf",2);
+    tester.TestRegisteredFunc(6,"asdfe",1);
+    tester.TestRegisteredFunc(5,"asdf",1);
+    
 }
 

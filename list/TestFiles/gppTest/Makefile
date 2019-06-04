@@ -7,7 +7,9 @@ User.exe :
 	
 
 Test.exe :
-	g++ -std=c++11 test.cpp -o Test.exe
+	g++ -std=c++14 test.cpp -o Test.exe
+	Test.exe
+	rm Test.exe
 
 clean :
 	rm ./*.o ./*.exe

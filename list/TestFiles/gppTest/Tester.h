@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 typedef int (*VaFunc_t)(...);
 
 enum ERROR_CODE
@@ -11,49 +12,53 @@ template <typename T, typename... Args>
 class Tester
 {
 private:
-    int mCurrentTestNum;
+    int mNumberOfTestCases;
+    int mCurrentScore;
     VaFunc_t mCurrentTest;
 
 public:
     Tester() = default;
-    Tester(T func, int testCases);
-    ~Tester();
-    void TestRegisteredFunc(Args... args);
-    static void TestFunc(T func, Args... args);
+    Tester(T funcToRegister, int testCases);
+    ~Tester() = default;
+    void TestRegisteredFunc(int evaluateValue,Args... args);
+
+    static void TestFunc(T funcToRegister,int evaluateValue, Args... args);
 };
 
 template <typename T, typename... Args>
-Tester<T, Args...>::Tester(T func, int testCases)
-{
-    mCurrentTest = (VaFunc_t)func;
-    mCurrentTestNum = 0;
-}
-
-template <typename T, typename... Args>
-Tester<T, Args...>::~Tester()
+Tester<T, Args...>::Tester(T funcToRegister, int testCases)
+    : mCurrentTest((T)funcToRegister)
+    , mNumberOfTestCases(testCases)
+    , mCurrentScore(0)
 {
 }
 
 template <typename T, typename... Args>
-void Tester<T, Args...>::TestRegisteredFunc(Args... args)
+void Tester<T, Args...>::TestRegisteredFunc(int evaluateValue,Args... args)
 {
-    mCurrentTest(args...);
-}
-
-template <typename T, typename... Args>
-void Tester<T, Args...>::TestFunc(T func, Args... args)
-{
-
-    switch (func(args...))
+    
+    if(evaluateValue==mCurrentTest(args...))
     {
-    case SUCCESS:
-        std::cout << "case Success";
-        break;
-    case FAIL:
-        std::cout << "case end";
-        break;
-    default:
-        std::cout << " i don't know ";
-        break;
+        printf("case Success, current score : %d out of  %d\n", mCurrentScore++ ,mNumberOfTestCases);
     }
+    else
+    {
+        std::cout << "Test Fail...not sure"<<std::endl;
+    }
+}
+
+//Test
+template <typename T, typename... Args>
+void Tester<T, Args...>::TestFunc(T funcToRegister,int evaluateValue, Args... args)
+{
+
+    if(evaluateValue==funcToRegister(args...))
+    {
+        std::cout << "case Success"<<std::endl;
+    }
+    else
+    {
+        std::cout << "Test Fail...not sure"<<std::endl;
+    }
+    
 }
