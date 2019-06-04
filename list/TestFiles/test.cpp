@@ -8,7 +8,6 @@ int myStrlen(const char* str,int num)
     {
         cnt++;
     }
-    
     return cnt+num;
 }
 

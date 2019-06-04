@@ -1,41 +1,64 @@
-#include <stdarg.h>
-#include <stdio.h>
+#include <iostream>
+#include <cassert>
+typedef int (*VaFunc_t)(...);
 
-typedef int (*ArgsFuncPtr)(int argc, ...);
-
-void InitTester(int testArgCounts,...);
-void PrintResult(int totalTestCounts);
-void TestAndScore(int functionNum,int argc,...);
-
-//TODO
-// 구현해야함 
-void PrintResult();
-
-//ERROR_CODE 발생, SUCCESS_CODE 발생, 해당 함수에 해당되는 인자수 입력, 인자입력
-int TestDataStructureFunction(ArgsFuncPtr functionForTest , int argc,...); 
-
-//ERROR_CODE 에 따른 성적 
-void TestScoring(); 
-
-//각 테스트 모듈을 실행한다 
-//(initialize module, insertion module, delete module, search module, destroy module)
-void  TestModuleStarter(ArgsFuncPtr);
-
-
-enum TestSize
+enum ERROR_CODE
 {
-    TOTAL_TESTS = 6,
-    TOTAL_TEST_COUNTS=30,
+    SUCCESS = 0,
+    FAIL = -1
 };
 
-struct Tester
+template <typename T, typename... Args>
+class Tester
 {
-    int (*TestFunc[TOTAL_TESTS])(int argc,...);
-    char* TestDescriptions[TOTAL_TESTS];
-    void(*PrintResult)(int);
-    int TestResults[TOTAL_TEST_COUNTS];
-    int CurrentScore;
-    int argcList[TOTAL_TESTS];
-}tester;
+private:
+    int mNumberOfTestCases;
+    int mCurrentScore;
+    VaFunc_t mCurrentTest;
 
+public:
+    Tester() = default;
+    Tester(T funcToRegister, int testCases);
+    ~Tester() = default;
+    void TestRegisteredFunc(int evaluateValue,Args... args);
 
+    static void TestFunc(T funcToRegister,int evaluateValue, Args... args);
+};
+
+template <typename T, typename... Args>
+Tester<T, Args...>::Tester(T funcToRegister, int testCases)
+    : mCurrentTest((T)funcToRegister)
+    , mNumberOfTestCases(testCases)
+    , mCurrentScore(0)
+{
+}
+
+template <typename T, typename... Args>
+void Tester<T, Args...>::TestRegisteredFunc(int evaluateValue,Args... args)
+{
+    
+    if(evaluateValue==mCurrentTest(args...))
+    {
+        printf("case Success, current score : %d out of  %d\n", mCurrentScore++ ,mNumberOfTestCases);
+    }
+    else
+    {
+        std::cout << "Test Fail...not sure"<<std::endl;
+    }
+}
+
+//Test
+template <typename T, typename... Args>
+void Tester<T, Args...>::TestFunc(T funcToRegister,int evaluateValue, Args... args)
+{
+
+    if(evaluateValue==funcToRegister(args...))
+    {
+        std::cout << "case Success"<<std::endl;
+    }
+    else
+    {
+        std::cout << "Test Fail...not sure"<<std::endl;
+    }
+    
+}
