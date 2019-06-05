@@ -1,0 +1,12 @@
+===리스트초기화 over...===
+
+
+
+
+===노드 삽입 테스트...started...===
+successed... 1 test OK
+successed... 2 test OK
+successed... 3 test OK
+successed... 4 test OK
+successed... 5 test OK
+successed... 6 test OK

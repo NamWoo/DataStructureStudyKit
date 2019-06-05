@@ -15,7 +15,17 @@ int InitList(List* list)
 // 노드를 리스트의 맨 마지막에 넣는다 실패시 -1, 성공시 0반환
 int AddNode(int data, List* list)
 {
+	if (list->Head == NULL)
+	{
+		Node* newNode = (Node*)malloc(sizeof(Node));
+		list->Head = newNode;
+		list->Tail = newNode;
+		list->Head->Next = list->Tail;
+		
+	}
+
 	Node* newNode = (Node*)malloc(sizeof(Node));
+	newNode->Data = data;	
 	list->Tail->Next = newNode;
 	list->Tail = newNode;
 	newNode->Next = NULL;
@@ -72,5 +82,6 @@ int DestroyList(List* list)
 		list->Head = list->Head->Next;
 		free(temp);
 	}
+	free(list);
 	return 0;
 }

@@ -18,37 +18,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>테스터파일</Filter>
-    </ClCompile>
-    <ClCompile Include="TestInsertion.cpp">
-      <Filter>테스터파일</Filter>
-    </ClCompile>
     <ClCompile Include="list.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TestInitialization.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Testfile\test.cpp">
+      <Filter>테스터파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Testfile\TestInitialization.cpp">
+      <Filter>테스터파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Testfile\TestInsertion.cpp">
       <Filter>테스터파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TEST_MACRO.h">
-      <Filter>테스터파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Tester.h">
-      <Filter>테스터파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TestInitialization.h">
-      <Filter>테스터파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TestInsertion.h">
-      <Filter>테스터파일</Filter>
-    </ClInclude>
     <ClInclude Include="list.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\TEST_MACRO.h">
+      <Filter>테스터파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\Tester.h">
+      <Filter>테스터파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\TestInitialization.h">
+      <Filter>테스터파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\TestInsertion.h">
+      <Filter>테스터파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ReportFileStream.h">
+      <Filter>테스터파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

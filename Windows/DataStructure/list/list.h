@@ -1,4 +1,9 @@
 #pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 typedef struct node
 {
 	struct node* Next;
@@ -30,4 +35,7 @@ int RemoveNodeFromList(int i, List* list);
 //  리스트 제거하기 제거할게 없으면 -1 반환 성공시 0
 int DestroyList(List* list);
 
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
