@@ -13,33 +13,36 @@ enum ERROR_CODE
 	FAIL = -1
 };
 
-template <typename T, typename... Args>
+template <typename... Args>
 class Tester
 {
 private:
 	int mNumberOfTestCases;
 	int mCurrentScore;
-	char* mTestDescription;
+	int mCurrentTestNum;
+	char* mTesterDescription;
 	VaFunc_t mCurrentTest;
 
 public:
 	Tester() = default;
-	Tester(T funcToRegister, const char* description, int testCases);
+	Tester(VaFunc_t funcToRegister, const char* description, int testCases);
 	~Tester();
+	void TestRegisteredFunc(int evaluateValue, Args... args, const char* description);
 	void TestRegisteredFunc(int evaluateValue, Args... args);
-	void VariableChecker(T evaluateValue, T data);
-
-	static void TestFunc(T funcToRegister, int evaluateValue, Args... args);
+	bool DataChecker(int evaluateValue, int data, const char*);
+	bool MemoryLeakChecker();
 };
 
-template <typename T, typename... Args>
-Tester<T, Args...>::Tester(T funcToRegister, const char* description, int testCases)
-	: mCurrentTest((T)funcToRegister)
+
+template <typename... Args>
+Tester<Args...>::Tester(VaFunc_t funcToRegister, const char* description, int testCases)
+	: mCurrentTest((VaFunc_t)funcToRegister)
 	, mNumberOfTestCases(testCases)
 	, mCurrentScore(0)
-	, mTestDescription((char*)description)
+	, mCurrentTestNum(0)
+	, mTesterDescription((char*)description)
 {
-
+	global::TotalTestNumber += testCases;
 	printf("====Test : %s  START====\n", description);
 
 	//file 출력  
@@ -49,29 +52,34 @@ Tester<T, Args...>::Tester(T funcToRegister, const char* description, int testCa
 	global::ReportFileStream << "===" << description << "started...===" << std::endl;
 	
 	global::ReportFileStream.seekg(0, std::ios::end);
-	std::cout <<mTestDescription<< " Tester init (after): "<< global::ReportFileStream.tellg() << std::endl;
-
+	std::cout <<mTesterDescription<< " Tester init (after): "<< global::ReportFileStream.tellg() << std::endl;
 }
 
-template <typename T, typename... Args>
-Tester<T, Args...>::~Tester()
+
+template <typename... Args>
+Tester<Args...>::~Tester()
 {
 	global::ReportFileStream.open("./ReportFile.txt", std::ios::out);
 	global::ReportFileStream.seekg(0, std::ios_base::end);
-	global::ReportFileStream << "===" << mTestDescription << " over...===\n\n" << std::endl;
+	global::ReportFileStream << "===" << mTesterDescription << " over...===\n\n" << std::endl;
 
-	printf("====Test Over====");
+	if (mCurrentScore >= mNumberOfTestCases)
+	{
+		std::cout << std::setw(40) << std::setfill('=')<< "통과"<<std::endl;
+	}
+
+	std::cout  <<"Test Over, Your Score of "<<mTesterDescription <<" "<< mCurrentScore<<"/"<<mNumberOfTestCases<<" " <<std::setfill('=') <<std::endl;
 }
 
-template <typename T, typename... Args>
-inline void Tester<T, Args...>::TestRegisteredFunc(int evaluateValue, Args... args)
+template<typename... Args>
+void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args)
 {
-
-
-	std::cout << global::ReportFileStream.tellg() << std::endl;
 	if (evaluateValue == mCurrentTest(args...))
 	{
-		printf("case Success, current score : %d out of  %d\n", mCurrentScore++, mNumberOfTestCases);
+		std::cout << "함수반환값 체크" << std::setw(40) << std::setfill('=') << std::right << std::left << std::endl;
+		printf("case Success, current score : %d out of  %d \n\n\n", ++mCurrentScore, mNumberOfTestCases);
+
+		//파일 출력
 		global::ReportFileStream << "successed... " << ++global::CurrentTestNumber << " test OK" << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
 
@@ -82,4 +90,64 @@ inline void Tester<T, Args...>::TestRegisteredFunc(int evaluateValue, Args... ar
 		global::ReportFileStream << "failed... " << ++global::CurrentTestNumber << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
 	}
+}
+
+
+template <typename... Args>
+inline void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args, const char* description)
+{
+
+	if (evaluateValue == mCurrentTest(args...))
+	{
+		std::cout << std::left << "함수반환값 체크 : (" << description << ")" << std::endl;
+		
+		
+		printf("case Success, current score : %d out of  %d\n\n", ++mCurrentScore, mNumberOfTestCases);
+		
+		//파일 출력
+		global::ReportFileStream << "successed... " << ++global::CurrentTestNumber << " test OK\n" << std::endl;
+		global::ReportFileStream.seekg(0, std::ios_base::end);
+
+	}
+	else
+	{
+		std::cout << "Test Fail...not sure" << std::endl;
+		global::ReportFileStream << "failed... " << ++global::CurrentTestNumber << std::endl;
+		global::ReportFileStream.seekg(0, std::ios_base::end);
+	}
+}
+
+
+template<typename... Args>
+bool Tester<Args...>::DataChecker(int evaluateValue, int data, const char* description)
+{
+	if (evaluateValue == data)
+	{
+		std::cout<<std::setw(20) << std::setfill('=');
+		std::cout << description;
+		std::cout << std::setw(20) << std::setfill('=')<< std::endl;
+
+		printf("case Success, current score : %d out of  %d\n", ++mCurrentScore, mNumberOfTestCases);
+		return true;
+	}
+	else
+	{
+		printf("case Success, current score : %d out of  %d\n", mCurrentScore, mNumberOfTestCases);
+		return false;
+	}
+
+	return true;
+}
+
+template<typename... Args>
+bool Tester<Args...>::MemoryLeakChecker()
+{
+	if (_CrtDumpMemoryLeaks())
+	{
+		std::cout << std::setw(20) << std::setfill('=');
+		std::cout << mTesterDescription << "에서 Memory 누수 감지됨";
+		std::cout << std::setw(20) << std::setfill('=') << std::endl;
+		return true;
+	}
+	return false;
 }

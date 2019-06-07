@@ -12,15 +12,16 @@ void TestInsertion()
 {
 	
 	List* list = new List();
+	Node* checker;
+	Tester<int, List*> tester((VaFunc_t)AddNode, "³ëµå »ğÀÔ Å×½ºÆ®...",6);
+	tester.TestRegisteredFunc(0, 0, list,"³ëµå»ğÀÔ0 ");
+	tester.TestRegisteredFunc(0, 1, list,"³ëµå»ğÀÔ0 ");
+	tester.TestRegisteredFunc(0, 2, list,"³ëµå»ğÀÔ0 ");
+	tester.TestRegisteredFunc(0, 3, list,"³ëµå»ğÀÔ0 ");
+	tester.TestRegisteredFunc(0, 4, list,"³ëµå»ğÀÔ0 ");
+	tester.TestRegisteredFunc(0, 5, list,"³ëµå»ğÀÔ0 ");
 
-	Tester<VaFunc_t, int, List*> tester((VaFunc_t)AddNode, "³ëµå »ğÀÔ Å×½ºÆ®...",5);
-	tester.TestRegisteredFunc(0, 0, list);
-	tester.TestRegisteredFunc(0, 1, list);
-	tester.TestRegisteredFunc(0, 2, list);
-	tester.TestRegisteredFunc(0, 3, list);
-	tester.TestRegisteredFunc(0, 4, list);
-	tester.TestRegisteredFunc(0, 5, list);
 	DestroyList(list);
-	_CrtDumpMemoryLeaks();
+	tester.MemoryLeakChecker();
 	
 }

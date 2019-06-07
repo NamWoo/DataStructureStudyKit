@@ -18,17 +18,18 @@ int AddNode(int data, List* list)
 	if (list->Head == NULL)
 	{
 		Node* newNode = (Node*)malloc(sizeof(Node));
+		newNode->Data = data;
 		list->Head = newNode;
 		list->Tail = newNode;
-		list->Head->Next = list->Tail;
-		
 	}
-
-	Node* newNode = (Node*)malloc(sizeof(Node));
-	newNode->Data = data;	
-	list->Tail->Next = newNode;
-	list->Tail = newNode;
-	newNode->Next = NULL;
+	else
+	{
+		Node* newNode = (Node*)malloc(sizeof(Node));
+		newNode->Data = data;
+		list->Tail->Next = newNode;
+		list->Tail = newNode;
+		newNode->Next = NULL;
+	}
 	return 0;
 }
 

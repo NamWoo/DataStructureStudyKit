@@ -13,9 +13,9 @@ extern "C"{
 void TestInitialization()
 {
 	List* myList = (List*)malloc(sizeof(List));
-	Tester<VaFunc_t, List*> tester((VaFunc_t)InitList,"리스트초기화",1); //register func
+	Tester<List*> tester((VaFunc_t)InitList,"리스트초기화",1); //register func
 	
-	tester.TestRegisteredFunc(0, myList);
+	tester.TestRegisteredFunc(0, myList,"초기화 테스트" );
 
 	free(myList);
 }

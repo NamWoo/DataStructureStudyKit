@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,6 +121,7 @@
     <ClCompile Include="Testfile\test.cpp" />
     <ClCompile Include="Testfile\TestInitialization.cpp" />
     <ClCompile Include="Testfile\TestInsertion.cpp" />
+    <ClCompile Include="Testfile\TestSearch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h" />
@@ -127,6 +129,7 @@
     <ClInclude Include="Testfile\Tester.h" />
     <ClInclude Include="Testfile\TestInitialization.h" />
     <ClInclude Include="Testfile\TestInsertion.h" />
+    <ClInclude Include="Testfile\TestSearch.h" />
     <ClInclude Include="Testfile\TEST_MACRO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -16,6 +16,9 @@
     <Filter Include="테스터파일">
       <UniqueIdentifier>{ffd3b830-d0ae-46b5-846f-4aae366a6e66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="테스터 헤더">
+      <UniqueIdentifier>{362bc190-fd4a-497d-baca-5be7d0696e26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="list.c">
@@ -33,25 +36,31 @@
     <ClCompile Include="Testfile\TestInsertion.cpp">
       <Filter>테스터파일</Filter>
     </ClCompile>
+    <ClCompile Include="Testfile\TestSearch.cpp">
+      <Filter>테스터파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Testfile\TEST_MACRO.h">
-      <Filter>테스터파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Testfile\Tester.h">
-      <Filter>테스터파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Testfile\TestInitialization.h">
-      <Filter>테스터파일</Filter>
+    <ClInclude Include="Testfile\TestSearch.h">
+      <Filter>테스터 헤더</Filter>
     </ClInclude>
     <ClInclude Include="Testfile\TestInsertion.h">
-      <Filter>테스터파일</Filter>
+      <Filter>테스터 헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\TestInitialization.h">
+      <Filter>테스터 헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\Tester.h">
+      <Filter>테스터 헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Testfile\TEST_MACRO.h">
+      <Filter>테스터 헤더</Filter>
     </ClInclude>
     <ClInclude Include="ReportFileStream.h">
-      <Filter>테스터파일</Filter>
+      <Filter>테스터 헤더</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
