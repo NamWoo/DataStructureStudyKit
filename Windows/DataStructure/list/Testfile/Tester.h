@@ -77,7 +77,7 @@ void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args)
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (evaluateValue == mCurrentTest(args...))
 	{
-		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE|FOREGROUND_INTENSITY);
 		std::cout << "함수반환값 체크" << std::setw(40) << std::setfill('=') << std::right << std::left << std::endl;
 		printf("case Success, current score : %d out of  %d \n\n\n", ++mCurrentScore, mNumberOfTestCases);
 
@@ -102,7 +102,7 @@ inline void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args,
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (evaluateValue == mCurrentTest(args...))
 	{
-		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE|FOREGROUND_INTENSITY);
 		std::cout << std::left << "함수반환값 체크 : (" << description << ")" << std::endl;
 
 
