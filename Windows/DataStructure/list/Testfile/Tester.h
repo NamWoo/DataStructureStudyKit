@@ -36,7 +36,7 @@ public:
 
 template <typename... Args>
 Tester<Args...>::Tester(VaFunc_t funcToRegister, const char* description, int testCases)
-	: mCurrentTest((VaFunc_t)funcToRegister)
+	: mCurrentTest(funcToRegister)
 	, mNumberOfTestCases(testCases)
 	, mCurrentScore(0)
 	, mCurrentTestNum(0)

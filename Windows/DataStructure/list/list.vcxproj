@@ -119,6 +119,7 @@
     <ClCompile Include="list.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Testfile\test.cpp" />
+    <ClCompile Include="Testfile\TestDelete.cpp" />
     <ClCompile Include="Testfile\TestInitialization.cpp" />
     <ClCompile Include="Testfile\TestInsertion.cpp" />
     <ClCompile Include="Testfile\TestSearch.cpp" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="list.h" />
     <ClInclude Include="ReportFileStream.h" />
+    <ClInclude Include="Testfile\TestDelete.h" />
     <ClInclude Include="Testfile\Tester.h" />
     <ClInclude Include="Testfile\TestInitialization.h" />
     <ClInclude Include="Testfile\TestInsertion.h" />

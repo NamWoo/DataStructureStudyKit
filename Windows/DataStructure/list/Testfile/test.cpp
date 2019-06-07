@@ -4,6 +4,7 @@
 #include "TestSearch.h"
 #include "TestInsertion.h"
 #include "Test.h"
+#include "TestDelete.h"
 
 
 void TestAll()
@@ -12,6 +13,7 @@ void TestAll()
 	TestInitialization();
 	TestInsertion();
 	TestSearch();
+	TestDelete();
 
 	global::ReportFileStream.close();
 }

@@ -62,21 +62,42 @@ int GetData(int i, List* list)
 // idx 번째의 노드를 지운다 (지울게 없다면 -1, 지운게 성공하면 0 반환)
 int RemoveNodeFromList(int idx, List* list)
 {
-	int temp = 0;
-	Node* searchNode = list->Head;
-	if (searchNode == NULL) return -1;
-	while (idx != temp++)
+	if (list->Head == NULL)
 	{
-		searchNode = searchNode->Next;
+		return -1;
 	}
-	free(searchNode);
+	int tempIdx = 0;
+	Node* temp = list->Head->Next;
+
+	if (idx == 0)
+	{
+		free(list->Head);
+		list->Head = temp;
+		return 0;
+	}
+	
+	Node* temptemp = NULL;
+	temp = list->Head;
+	while (tempIdx++ < idx)
+	{
+		temptemp = temp->Next->Next;
+		temp = temp->Next;
+	}
+	free(temp->Next);
+	temp->Next = temptemp;
+
+
 	return 0;
 }
 
 //  리스트 제거하기 제거할게 없으면 -1 반환 성공시 0
 int DestroyList(List* list)
 {
-	if (list->Head == NULL)return -1;
+	if (list->Head == NULL)
+	{
+		free(list);
+		return -1;
+	}
 	while (list->Head)
 	{
 		Node* temp = list->Head;
