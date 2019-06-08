@@ -14,8 +14,8 @@ void TestSearch()
 	List* myList = (List*)malloc(sizeof(List));
 	InitList(myList);
 	Tester<int, List*> tester((VaFunc_t)GetData, "데이타 가져오기", 7);
-	tester.TestRegisteredFunc(-1, 3, myList,"아무것도 ㅇ벗을때");
-	tester.TestRegisteredFunc(-1, 5, myList,"아무것도 ㅇ벗을때");
+	tester.TestRegisteredFunc(-1, 3, myList,"아무것도 없을때");
+	tester.TestRegisteredFunc(-1, 5, myList,"아무것도 없을때");
 	AddNode(400, myList);
 	AddNode(100, myList);
 	AddNode(50, myList);

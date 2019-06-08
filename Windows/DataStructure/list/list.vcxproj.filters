@@ -42,6 +42,9 @@
     <ClCompile Include="Testfile\TestDelete.cpp">
       <Filter>테스터파일</Filter>
     </ClCompile>
+    <ClCompile Include="Testfile\globalVariables.cpp">
+      <Filter>테스터파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h">
@@ -62,10 +65,10 @@
     <ClInclude Include="Testfile\TEST_MACRO.h">
       <Filter>테스터 헤더</Filter>
     </ClInclude>
-    <ClInclude Include="ReportFileStream.h">
+    <ClInclude Include="Testfile\TestDelete.h">
       <Filter>테스터 헤더</Filter>
     </ClInclude>
-    <ClInclude Include="Testfile\TestDelete.h">
+    <ClInclude Include="Testfile\globalVariables.h">
       <Filter>테스터 헤더</Filter>
     </ClInclude>
   </ItemGroup>

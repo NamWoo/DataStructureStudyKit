@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <cassert>
-#include "ReportFileStream.h"
+#include "globalVariables.h"
 
 
 typedef int(*VaFunc_t)(...);
@@ -77,16 +77,20 @@ void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args)
 	if (evaluateValue == mCurrentTest(args...))
 	{
 		std::cout << "함수반환값 체크" << std::setw(40) << std::setfill('=') << std::right << std::left << std::endl;
-		printf("case Success, current score : %d out of  %d \n\n\n", ++mCurrentScore, mNumberOfTestCases);
-
+		printf("case Success, current score : %d/%d \n\n\n", ++mCurrentScore, mNumberOfTestCases);
+		
+		global::TotalScore++;
 		//파일 출력
+		
 		global::ReportFileStream << "successed... " << ++global::CurrentTestNumber << " test OK" << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
-
+		
 	}
 	else
 	{
-		std::cout << "Test Fail...not sure" << std::endl;
+		std::cout <<std::setw(30)<<std::setfill('*') <<std::right<< "Test Fail... " <<mCurrentScore<<'/'<<mNumberOfTestCases << std::endl;
+
+		//파일 출력
 		global::ReportFileStream << "failed... " << ++global::CurrentTestNumber << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
 	}
@@ -104,6 +108,8 @@ inline void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args,
 		
 		printf("case Success, current score : %d out of  %d\n\n", ++mCurrentScore, mNumberOfTestCases);
 		
+		global::TotalScore++;
+
 		//파일 출력
 		global::ReportFileStream << "successed... " << ++global::CurrentTestNumber << " test OK\n" << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
@@ -111,7 +117,10 @@ inline void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args,
 	}
 	else
 	{
-		std::cout << "Test Fail...not sure" << std::endl;
+		std::cout << std::left<<std::setfill('*') << "  Test Fail...not sure" << std::endl;
+
+
+		//파일 출력
 		global::ReportFileStream << "failed... " << ++global::CurrentTestNumber << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
 	}
@@ -127,6 +136,7 @@ bool Tester<Args...>::DataChecker(int evaluateValue, int data, const char* descr
 		std::cout << description;
 		std::cout << std::setw(20) << std::setfill('=')<< std::endl;
 
+		global::TotalScore++;
 		printf("case Success, current score : %d out of  %d\n", ++mCurrentScore, mNumberOfTestCases);
 		return true;
 	}

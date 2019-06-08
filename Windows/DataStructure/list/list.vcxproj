@@ -78,6 +78,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -118,6 +121,7 @@
   <ItemGroup>
     <ClCompile Include="list.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Testfile\globalVariables.cpp" />
     <ClCompile Include="Testfile\test.cpp" />
     <ClCompile Include="Testfile\TestDelete.cpp" />
     <ClCompile Include="Testfile\TestInitialization.cpp" />
@@ -126,7 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h" />
-    <ClInclude Include="ReportFileStream.h" />
+    <ClInclude Include="Testfile\globalVariables.h" />
     <ClInclude Include="Testfile\TestDelete.h" />
     <ClInclude Include="Testfile\Tester.h" />
     <ClInclude Include="Testfile\TestInitialization.h" />
