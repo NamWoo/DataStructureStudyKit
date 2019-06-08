@@ -59,16 +59,19 @@ Tester<Args...>::Tester(VaFunc_t funcToRegister, const char* description, int te
 template <typename... Args>
 Tester<Args...>::~Tester()
 {
-	global::ReportFileStream.open("./ReportFile.txt", std::ios::out);
-	global::ReportFileStream.seekg(0, std::ios_base::end);
-	global::ReportFileStream << "===" << mTesterDescription << " over...===\n\n" << std::endl;
-
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (mCurrentScore >= mNumberOfTestCases)
 	{
 		std::cout << std::setw(40) << std::setfill('=') << "통과" << std::endl;
 	}
-
+	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN|FOREGROUND_INTENSITY);
 	std::cout << "Test Over, Your Score of " << mTesterDescription << " " << mCurrentScore << "/" << mNumberOfTestCases << " " << std::setfill('=') << std::endl;
+
+	//파일 출력 
+	global::ReportFileStream.open("./ReportFile.txt", std::ios::out);
+	global::ReportFileStream.seekg(0, std::ios_base::end);
+	global::ReportFileStream << "===" << mTesterDescription << " over...===\n\n" << std::endl;
+
 }
 
 template<typename... Args>
@@ -77,7 +80,7 @@ void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args)
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (evaluateValue == mCurrentTest(args...))
 	{
-		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE|FOREGROUND_INTENSITY);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE|FOREGROUND_INTENSITY + 2);
 		std::cout << "함수반환값 체크" << std::setw(40) << std::setfill('=') << std::right << std::left << std::endl;
 		printf("case Success, current score : %d/%d \n\n\n", ++mCurrentScore, mNumberOfTestCases);
 		
@@ -90,6 +93,7 @@ void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args)
 	}
 	else
 	{
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 		std::cout << "Test Fail...not sure" << std::endl;
 		global::ReportFileStream << "failed... " << ++global::CurrentTestNumber << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
@@ -103,7 +107,7 @@ inline void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args,
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (evaluateValue == mCurrentTest(args...))
 	{
-		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE|FOREGROUND_INTENSITY);
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE|FOREGROUND_INTENSITY +2);
 		std::cout << std::left << "함수반환값 체크 : (" << description << ")" << std::endl;
 
 
@@ -116,6 +120,7 @@ inline void Tester<Args...>::TestRegisteredFunc(int evaluateValue, Args... args,
 	}
 	else
 	{
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		std::cout << "Test Fail...not sure" << std::endl;
 		global::ReportFileStream << "failed... " << ++global::CurrentTestNumber << std::endl;
 		global::ReportFileStream.seekg(0, std::ios_base::end);
