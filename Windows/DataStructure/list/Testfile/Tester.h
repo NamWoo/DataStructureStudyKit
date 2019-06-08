@@ -67,6 +67,8 @@ Tester<Args...>::~Tester()
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN|FOREGROUND_INTENSITY);
 	std::cout << "Test Over, Your Score of " << mTesterDescription << " " << mCurrentScore << "/" << mNumberOfTestCases << " " << std::setfill('=') << std::endl;
 
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_RED);
+
 	//파일 출력 
 	global::ReportFileStream.open("./ReportFile.txt", std::ios::out);
 	global::ReportFileStream.seekg(0, std::ios_base::end);
