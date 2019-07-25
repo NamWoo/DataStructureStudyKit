@@ -20,7 +20,7 @@ void TestInsertion()
 	tester.TestRegisteredFunc(0, 3, list,"³ëµå»ğÀÔ0 ");
 	tester.TestRegisteredFunc(0, 4, list,"³ëµå»ğÀÔ0 ");
 	tester.TestRegisteredFunc(0, 5, list,"³ëµå»ğÀÔ0 ");
-
+	
 	DestroyList(list);
 	tester.MemoryLeakChecker();
 	

@@ -1,2 +1,8 @@
-﻿  list.c
+﻿  test.cpp
+  TestDelete.cpp
+  TestInitialization.cpp
+  TestInsertion.cpp
+c:\users\h\desktop\datastructure\windows\datastructure\list\testfile\testinsertion.cpp(15): warning C4101: 'checker' :참조되지 않은 지역 변수입니다.
+  TestSearch.cpp
+  코드를 생성하고 있습니다...
   list.vcxproj -> C:\Users\H\Desktop\DataStructure\Windows\DataStructure\Debug\list.exe

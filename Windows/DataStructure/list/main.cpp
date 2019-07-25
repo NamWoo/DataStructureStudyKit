@@ -6,10 +6,11 @@
 #include "Testfile/TestInsertion.h"
 #include "Testfile/Test.h"
 
+
 int main()
 {
 	TestAll();
 
-	system("pause");
+	
     return 0;   
 }
